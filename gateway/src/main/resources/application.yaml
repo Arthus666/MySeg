@@ -1,0 +1,47 @@
+server:
+  port: 80
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lowerCaseServiceId: true
+      routes:
+        - id: admin
+          uri: lb://admin
+          predicates:
+            - Path=/admin/**
+          filters:
+            - StripPrefix=1
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+        - id: medical
+          uri: lb://medical
+          predicates:
+            - Path=/medical/**
+          filters:
+            - StripPrefix=1
+        - id: seg
+          uri: lb://seg
+          predicates:
+            - Path=/seg/**
+          filters:
+            - StripPrefix=1
+    sentinel:
+      transport:
+        port: 15000
+        dashboard: localhost:8748
+  web:
+    resources:
+      static-locations: classpath:/resources/,classpath:/static/,classpath:/public/,file:E:/MedicalService/

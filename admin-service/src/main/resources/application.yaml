@@ -1,0 +1,43 @@
+server:
+  port: 8761
+
+
+spring:
+  application:
+    name: admin
+  dataSource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/segmentation?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+    type: com.alibaba.druid.pool.DruidDataSource
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        port: 18763
+        dashboard: localhost:8748
+  data:
+    redis:
+      port: 6379
+      database: 0
+      host: localhost
+
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      max-request-size: 300MB
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+
+feign:
+  sentinel:
+    enabled: true

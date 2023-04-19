@@ -1,0 +1,1 @@
+import{T as a}from"./default-d6449ec9.js";import{y as i,x as n,z as s}from"./index-1e170dd9.js";var t=Symbol("SizeProvider"),f=function(e){var r=n("configProvider",a),o=i(function(){return e.size||r.componentSize});return s(t,o),o},z=function(e){var r=e?i(function(){return e.size}):n(t,i(function(){return"default"}));return r};export{f as a,z as u};
